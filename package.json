@@ -1,0 +1,29 @@
+{
+  "name": "trogon-cli",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "scripts": {
+    "start": "ts-node src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/clear": "^0.1.4",
+    "@types/figlet": "^1.7.0",
+    "@types/node": "^22.9.3",
+    "concurrently": "^9.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "@topcli/spinner": "^2.1.2",
+    "clear": "^0.1.0",
+    "commander": "^12.1.0",
+    "figlet": "^1.8.0",
+    "inquirer": "^12.1.0",
+    "picocolors": "^1.1.1",
+    "shell-exec": "^1.1.2"
+  }
+}
