@@ -10,7 +10,7 @@ import { initGit } from "../functions/initGit";
 
 export default async function create() {
   await clear();
-  await figlet("Trogon CLI", (err, data) => {
+  await figlet("Framix CLI", (err, data) => {
     if (err) {
       logger.error(err.message);
       return;

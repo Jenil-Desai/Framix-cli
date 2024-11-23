@@ -1,9 +1,14 @@
 {
-  "name": "trogon-cli",
+  "name": "framix-cli",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "./dist/index.js",
+  "bin": {
+    "framix": "./dist/index.js"
+  },
   "scripts": {
-    "start": "ts-node src/index.ts"
+    "start": "ts-node src/index.ts",
+    "build": "tsc",
+    "package:macos": "pkg . --targets node14-macos-x64 --output framix"
   },
   "keywords": [],
   "author": "",
@@ -14,16 +19,19 @@
     "@types/figlet": "^1.7.0",
     "@types/node": "^22.9.3",
     "concurrently": "^9.1.0",
+    "pkg": "^5.8.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
   },
   "dependencies": {
-    "@topcli/spinner": "^2.1.2",
     "clear": "^0.1.0",
     "commander": "^12.1.0",
     "figlet": "^1.8.0",
     "inquirer": "^12.1.0",
     "picocolors": "^1.1.1",
     "shell-exec": "^1.1.2"
+  },
+  "pkg": {
+    "scripts": "dist/**/*.js"
   }
 }
