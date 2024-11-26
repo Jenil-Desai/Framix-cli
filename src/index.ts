@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { Command } from "commander";
-import create from "./commands/create";
+import Create from "./commands/create";
 
 const program = new Command();
 
@@ -11,7 +11,7 @@ program
   .command("create")
   .description("Create An Project Boilerplate")
   .action(async () => {
-    await create();
+    await Create();
   });
 
 program.parse(process.argv);

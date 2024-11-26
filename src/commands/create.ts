@@ -1,42 +1,20 @@
-import figlet from "figlet";
 import clear from "clear";
 
-import { MakeDirectory } from "../utils/makeDir";
-import prompts from "../core/prompts/prompt";
-import logger from "../utils/logger";
-import { langMatcher } from "../utils/langMatcher";
-import { frameworkMatcher } from "../utils/frameMatcher";
-import { initGit } from "../functions/initGit";
+import welcomeMsg from "../utils/welcomeMsg";
+import successMsg from "../utils/successMsg";
+import { setupProject } from "../core/setup";
+import wizard from "../core/wizard";
+import failureMsg from "../utils/FailureMsg";
 
-export default async function create() {
+export default async function Create() {
   await clear();
-  await figlet("Framix CLI", (err, data) => {
-    if (err) {
-      logger.error(err.message);
-      return;
-    }
-    logger.brand(data || "");
-  });
+  await welcomeMsg();
 
-  const name = await prompts.name();
-  const langauge = await prompts.language();
-  const framework = await prompts.framework(langauge);
-  const gitOption = await prompts.gitOptions();
-
-  await MakeDirectory(name);
-  await langMatcher(langauge, name);
-  if (framework != "Simple") await frameworkMatcher(framework, name);
-  if (gitOption) await initGit(name);
-
-  await clear();
-  await figlet("Success!", (err, data) => {
-    if (err) {
-      logger.error(err.message);
-      return;
-    }
-    logger.success(data || "");
-  });
-
-  logger.info(`🎉 Your project ${name} has been created successfully!\n`);
-  logger.success("Happy coding! 🎊\n");
+  const { projectName, language, framework, styling, gitOption } = await wizard();
+  const status = await setupProject(projectName, language, framework, styling, gitOption);
+  if (status) {
+    await successMsg(projectName);
+  } else {
+    await failureMsg(projectName);
+  }
 }

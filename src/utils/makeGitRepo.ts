@@ -3,7 +3,7 @@ import fs from "fs/promises";
 
 import logger from "../utils/logger";
 
-export async function initGit(name: string) {
+export async function makeGitRepo(name: string) {
   const res = await shellExec(`cd ${name} && git init && touch .gitignore`);
   if (res.error) {
     logger.error(`[Error] : Git Is Not Installed`);
@@ -13,6 +13,5 @@ export async function initGit(name: string) {
     } catch (error) {
       logger.error(`[Error] : Error Creating .gitignore : ${error}`);
     }
-    logger.log(`[Done] : Git Repoistry Initialized`);
   }
 }
